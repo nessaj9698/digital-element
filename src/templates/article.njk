@@ -1,0 +1,10 @@
+{% macro article(article) %}
+<article class="article">
+    <div class="article__img-wrapper">
+        <img src="{{ article.image }}" alt="Article Image">
+    </div>
+    <h3>{{ article.title }}</h3>
+    <p>{{ article.text }}</p>
+    <a href="{{ article.link }}">Read more</a>
+</article>
+{% endmacro %}

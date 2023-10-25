@@ -1,0 +1,62 @@
+{% import "button.njk" as buttonComponent %}
+{% import "logo.njk" as logoComponent %}
+
+{% macro footer(bgColor) %}
+<footer class="footer" style="background-color:{{bgColor}}">
+    <div class="footer__overlay"></div>
+    <div class="container">
+        <div class="footer__inner">
+            <div class="footer__our-team">
+                <div>
+                    <h2>Intersted to work with our team?</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+                <div>
+                     {{ buttonComponent.button("button footer__btn", "Let’s Talk") }}
+                </div>
+            </div>
+            
+
+            <div class="footer__links-wrapper">
+                <div class="left-side">
+                    <div class="footer-logo__wrapper">
+                        {{ logoComponent.logo("#98C3E8") }}
+                        <span>Afrianska</span>
+                    </div>
+                    <div class="footer__contact-wrapper">
+                        <p class="footer__contact-symbol">A.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    </div>
+                     <div class="footer__contact-wrapper">
+                        <p class="footer__contact-symbol">T.</p>
+                        <a href="tel:+62-812-7313-4321">+62-812-7313-4321</a>
+                    </div>
+                     <div class="footer__contact-wrapper">
+                        <p class="footer__contact-symbol">E.</p>
+                        <a href="mailto:hello.afrian@gmail.com">hello.afrian@gmail.com</a>
+                    </div>
+
+                </div>
+
+                <div class="right-side">
+                    <ul>About US
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">What We Do</a></li>
+                        <li><a href="#">Project</a></li>
+                        <li><a href="#">How It Work With Us</a></li>
+                    </ul>
+
+                     <ul>Follow US
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <span class="footer__copyrights">2019 © Afrianska. All rights reserved.</span>
+        </div>
+    </div>
+</footer>
+ {% include "popUpForm.njk" %}
+{% endmacro %}
