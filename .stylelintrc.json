@@ -1,0 +1,22 @@
+{
+    "extends":[
+        "stylelint-config-standard",
+        "stylelint-order-config-standard",
+        "stylelint-config-standard-scss"
+    ],
+    "plugins": [
+        "stylelint-order"
+    ],
+    "rules": {
+        "indentation": [
+            "tab"
+        ],
+        "color-hex-case": "upper",
+        "declaration-empty-line-before": null, 
+        "property-empty-line-before": ["always", {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"],
+        "selector-class-pattern": null
+    }]
+    }
+}

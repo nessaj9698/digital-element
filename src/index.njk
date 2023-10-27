@@ -15,7 +15,7 @@
                     {{ buttonComponent.button("button", "See Our Project", 'button') }}
                 </div>
                 <div class="hero-section__right-side">
-                    <img src="/img/illustration.webp" alt="illustration">
+                    <img src="./img/illustration.webp" alt="illustration">
                 </div>
                 
         </div>
@@ -24,7 +24,7 @@
         <section class="container service-section">
             <h2>What we do to help our client grow in digital era</h2>
             <div class="articles-wrapper">
-                {% for item in data[0].services %}
+                {% for item in njkData[1].services %}
                     {{ articleComponent.article(item) }}
                 {% endfor %}
             </div>
@@ -37,7 +37,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 </div>
                 <div class="client-section__client-rows">
-                     {% for client in data[1].clients %}
+                     {% for client in njkData[0].clients %}
                         {{ clientComponent.clientsRows(client) }}
                     {% endfor %}
                     <a href="#" class="client-row__item client-row__show-more">

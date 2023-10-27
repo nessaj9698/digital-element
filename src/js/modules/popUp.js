@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 class Validator {
   constructor() {
     this.errorClass = 'error';
@@ -35,12 +34,12 @@ class Validator {
     return true;
   }
 
-  validateEmail(email) {
+  static validateEmail(email) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   }
 
-  showErrorTooltip(element, message) {
+  static showErrorTooltip(element, message) {
     const tooltip = element.parentNode.querySelector('.tooltip-wrapper');
     tooltip.innerHTML = message;
     element.parentNode.appendChild(tooltip);
@@ -69,6 +68,7 @@ class Popup {
   }
 
   openPopup() {
+    console.log('clicked')
     this.formWrapper.classList.add('popup-active');
     document.body.classList.add('modal-open');
   }

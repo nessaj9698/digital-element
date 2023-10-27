@@ -26,67 +26,65 @@ const dest = {
   html: 'dist',
 };
 
-gulp.task('js', function () {
-  return gulp.src(src.js)
+gulp.task('js', () => {
+  gulp.src(src.js)
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(dest.js))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 });
 
-gulp.task('css', function () {
-  return gulp.src(src.css)
+gulp.task('css', () => {
+  gulp.src(src.css)
     .pipe(autoprefixer({overrideBrowserslist: ['last 10 version']}))
-    .pipe(scss({ outputStyle:'compressed' }).on('error', scss.logError))
+    .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
     .pipe(concat('styles.min.css'))
     .pipe(cleanCSS())
     .pipe(gulp.dest(dest.css))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 });
 
-gulp.task('fonts', function () {
-  return gulp.src(src.fonts)
+gulp.task('fonts', () => {
+  gulp.src(src.fonts)
     .pipe(gulp.dest(dest.fonts))
     .pipe(browserSync.stream());
 });
 
-gulp.task('webp', function () {
-  return gulp.src(src.images)
+gulp.task('webp', () => {
+  gulp.src(src.images)
     .pipe(webp({ quality: 100 }))
     .pipe(gulp.dest(dest.images))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 });
 
-gulp.task('nunjucks', function () {
-  return gulp.src(src.templates)
-    .pipe(data(function() {
-      const data = require('./src/templates/data/data.json')
-      return {data}
+gulp.task('nunjucks', () => {
+  gulp.src(src.templates)
+    .pipe(data(() => {
+      const njkData = require('./src/templates/data/data.json');
+      return { njkData };
     }))
     .pipe(nunjucksRender({
-      path: ['src/templates/']
+      path: ['src/templates/'],
     }))
     .pipe(gulp.dest(dest.html))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch(src.js, gulp.series('js'));
   gulp.watch(src.css, gulp.series('css'));
   gulp.watch(src.images, gulp.series('webp'));
   gulp.watch('src/**/*.njk', gulp.series('nunjucks')).on('change', browserSync.reload);
-  gulp.watch('dist/*.html').on('change', browserSync.reload)
+  gulp.watch('dist/*.html').on('change', browserSync.reload);
+  gulp.watch('dist/js/*.js').on('change', browserSync.reload);
 });
 
-
-
-gulp.task('browsersync', function() {
+gulp.task('browsersync', () => {
   browserSync.init({
     server: {
-        baseDir: "./dist"
-    }
+      baseDir: './dist',
+    },
   });
-})
-
+});
 
 gulp.task('default', gulp.parallel('js', 'css', 'fonts', 'webp', 'nunjucks', 'browsersync', 'watch'));

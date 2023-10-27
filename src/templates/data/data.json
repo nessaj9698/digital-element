@@ -1,54 +1,44 @@
-[{
-    "component":"services",
-    "services" : [{
-        "title":"Bring Technology To Your Comfrotable Home",
-        "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        "image":"./img/article-1.svg",
-        "link":"#"
+[
+    { "clients": [{
+            "client":"Logo client 1"
+        },
+        {
+            "client":"Logo client 2"
+        },
+        {
+            "client":"Logo client 3"
+        },
+        {
+            "client":"Logo client 4"
+        },
+        {
+            "client":"Logo client 5"
+        },
+        {
+            "client":"Logo client 6"
+        },
+        {
+            "client":"Logo client 7"
+        }]
     },
     {
-        "title":"Make Your business To Be Better Famous In Internet",
-        "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        "image":"./img/article-2.svg",
-        "link":"#"
-    },
-    {
-        "title":"Build Your Digital Product That Suitable For Your Need",
-        "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        "image":"./img/article-3.svg",
-        "link":"#"
-    }]
-},
-{
-    "component":"clients",
-    "clients": [{
-        "client":"Logo client 1"
-    },
-    {
-        "client":"Logo client 2"
-    },
-    {
-        "client":"Logo client 3"
-    },
-    {
-        "client":"Logo client 4"
-    },
-    {
-        "client":"Logo client 5"
-    },
-    {
-        "client":"Logo client 6"
-    },
-    {
-        "client":"Logo client 7"
-    }]
-}
+        "services": [{
+            "title":"Bring Technology To Your Comfrotable Home",
+            "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+            "image":"./img/article-1.svg",
+            "link":"#"
+        },
+        {
+            "title":"Make Your business To Be Better Famous In Internet",
+            "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+            "image":"./img/article-2.svg",
+            "link":"#"
+        },
+        {
+            "title":"Build Your Digital Product That Suitable For Your Need",
+            "text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+            "image":"./img/article-3.svg",
+            "link":"#"
+        }]
+    }
 ]
-
-
-
-
-
-
-
-
