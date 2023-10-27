@@ -1,90 +1,39 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-var Validator = /*#__PURE__*/function () {
-  function Validator() {
-    (0, _classCallCheck2["default"])(this, Validator);
-    this.errorClass = 'error';
-  }
-  (0, _createClass2["default"])(Validator, [{
-    key: "validateForm",
-    value: function validateForm(form) {
-      var _this = this;
-      var inputs = form.querySelectorAll('.form__input');
-      var isValid = true;
-      inputs.forEach(function (input) {
-        if (!_this.validateField(input)) {
-          isValid = false;
-        }
-      });
-      return isValid;
-    }
-  }, {
-    key: "validateField",
-    value: function validateField(input) {
-      if (input.type === 'email') {
-        if (!this.validateEmail(input.value) || !input.value.trim()) {
-          input.classList.add(this.errorClass);
-          this.showErrorTooltip(input, 'Please enter a valid email address');
-          return false;
-        }
-      } else if (!input.value.trim()) {
-        input.classList.add(this.errorClass);
-        this.showErrorTooltip(input, 'This field is required');
-        return false;
-      } else {
-        input.classList.remove(this.errorClass);
-      }
-      return true;
-    }
-  }], [{
-    key: "validateEmail",
-    value: function validateEmail(email) {
-      var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      return emailPattern.test(email);
-    }
-  }, {
-    key: "showErrorTooltip",
-    value: function showErrorTooltip(element, message) {
-      var tooltip = element.parentNode.querySelector('.tooltip-wrapper');
-      tooltip.innerHTML = message;
-      element.parentNode.appendChild(tooltip);
-      setTimeout(function () {
-        tooltip.innerHTML = '';
-      }, 3000);
-    }
-  }]);
-  return Validator;
-}();
+var _validator = _interopRequireDefault(require("./validator"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var Popup = /*#__PURE__*/function () {
   function Popup() {
-    var _this2 = this;
-    (0, _classCallCheck2["default"])(this, Popup);
+    var _this = this;
+    _classCallCheck(this, Popup);
     this.formWrapper = document.querySelector('.form-wrapper');
     this.popupForm = document.querySelector('.popup-form');
     this.closeButton = document.querySelector('.popup-form__close-btn');
     this.openButton = document.querySelector('.footer__btn');
     this.openButton.addEventListener('click', function () {
-      return _this2.openPopup();
+      return _this.openPopup();
     });
     this.closeButton.addEventListener('click', function () {
-      return _this2.closePopup();
+      return _this.closePopup();
     });
     this.formWrapper.addEventListener('click', function (e) {
-      if (e.target === _this2.formWrapper) {
-        _this2.closePopup();
+      if (e.target === _this.formWrapper) {
+        _this.closePopup();
       }
     });
     this.popupForm.addEventListener('submit', function (e) {
-      return _this2.onSubmit(e);
+      return _this.onSubmit(e);
     });
   }
-  (0, _createClass2["default"])(Popup, [{
+  _createClass(Popup, [{
     key: "openPopup",
     value: function openPopup() {
-      console.log('clicked');
       this.formWrapper.classList.add('popup-active');
       document.body.classList.add('modal-open');
     }
@@ -98,7 +47,7 @@ var Popup = /*#__PURE__*/function () {
     key: "onSubmit",
     value: function onSubmit(e) {
       e.preventDefault();
-      var validator = new Validator();
+      var validator = new _validator["default"]();
       if (validator.validateForm(this.popupForm)) {
         // Если форма валидна, меняем содержимое формы
         this.popupForm.innerHTML = '<p class="form__success">Your message successfully sent</p>';

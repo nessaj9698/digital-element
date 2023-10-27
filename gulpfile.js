@@ -3,19 +3,20 @@ const concat = require('gulp-concat');
 const cleanCSS = require('gulp-clean-css');
 const webp = require('gulp-webp');
 const nunjucksRender = require('gulp-nunjucks-render');
-const uglify = require('gulp-uglify-es').default
-const autoprefixer = require('gulp-autoprefixer')
-const scss = require('gulp-sass')(require('sass'))
-const browserSync = require('browser-sync').create()
+const uglify = require('gulp-uglify-es').default;
+const autoprefixer = require('gulp-autoprefixer');
+const scss = require('gulp-sass')(require('sass'));
+const browserSync = require('browser-sync').create();
 const data = require('gulp-data');
+const babel = require('gulp-babel');
+const webpack = require('webpack-stream');
 
 const src = {
-  js: 'src/js/*/*.js',
-  css: 'src/scss/*.scss',
+  js: 'src/js/**/*.js',
+  css: 'src/styles/*.scss',
   fonts: 'src/fonts/*.woff2',
   images: 'src/img/*.{jpg,png,svg}',
   templates: 'src/*.njk',
-
 };
 
 const dest = {
@@ -28,6 +29,8 @@ const dest = {
 
 gulp.task('js', () => {
   gulp.src(src.js)
+    .pipe(babel())
+    .pipe(webpack())
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(dest.js))
@@ -36,7 +39,7 @@ gulp.task('js', () => {
 
 gulp.task('css', () => {
   gulp.src(src.css)
-    .pipe(autoprefixer({overrideBrowserslist: ['last 10 version']}))
+    .pipe(autoprefixer({ overrideBrowserslist: ['last 10 version'] }))
     .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
     .pipe(concat('styles.min.css'))
     .pipe(cleanCSS())
@@ -77,6 +80,7 @@ gulp.task('watch', () => {
   gulp.watch('src/**/*.njk', gulp.series('nunjucks')).on('change', browserSync.reload);
   gulp.watch('dist/*.html').on('change', browserSync.reload);
   gulp.watch('dist/js/*.js').on('change', browserSync.reload);
+  gulp.watch(dest.css).on('change', browserSync.reload);
 });
 
 gulp.task('browsersync', () => {
