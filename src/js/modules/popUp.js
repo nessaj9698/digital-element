@@ -68,7 +68,6 @@ class Popup {
   }
 
   openPopup() {
-    console.log('clicked')
     this.formWrapper.classList.add('popup-active');
     document.body.classList.add('modal-open');
   }
