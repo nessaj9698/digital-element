@@ -34,12 +34,12 @@ class Validator {
     return true;
   }
 
-  static validateEmail(email) {
+  validateEmail(email) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   }
 
-  static showErrorTooltip(element, message) {
+  showErrorTooltip(element, message) {
     const tooltip = element.parentNode.querySelector('.tooltip-wrapper');
     tooltip.innerHTML = message;
     element.parentNode.appendChild(tooltip);

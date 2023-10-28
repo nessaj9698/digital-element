@@ -27,51 +27,41 @@ const dest = {
   html: 'dist',
 };
 
-gulp.task('js', () => {
-  gulp.src(src.js)
-    .pipe(babel())
-    .pipe(webpack())
-    .pipe(concat('app.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest(dest.js))
-    .pipe(browserSync.stream());
-});
+gulp.task('js', () => gulp.src(src.js)
+  .pipe(babel())
+  .pipe(webpack())
+  .pipe(concat('app.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest(dest.js))
+  .pipe(browserSync.stream()));
 
-gulp.task('css', () => {
-  gulp.src(src.css)
-    .pipe(autoprefixer({ overrideBrowserslist: ['last 10 version'] }))
-    .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
-    .pipe(concat('styles.min.css'))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(dest.css))
-    .pipe(browserSync.stream());
-});
+gulp.task('css', () => gulp.src(src.css)
+  .pipe(autoprefixer({ overrideBrowserslist: ['last 10 version'] }))
+  .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
+  .pipe(concat('styles.min.css'))
+  .pipe(cleanCSS())
+  .pipe(gulp.dest(dest.css))
+  .pipe(browserSync.stream()));
 
-gulp.task('fonts', () => {
-  gulp.src(src.fonts)
-    .pipe(gulp.dest(dest.fonts))
-    .pipe(browserSync.stream());
-});
+gulp.task('fonts', () => gulp.src(src.fonts)
+  .pipe(gulp.dest(dest.fonts))
+  .pipe(browserSync.stream()));
 
-gulp.task('webp', () => {
-  gulp.src(src.images)
-    .pipe(webp({ quality: 100 }))
-    .pipe(gulp.dest(dest.images))
-    .pipe(browserSync.stream());
-});
+gulp.task('webp', () => gulp.src(src.images)
+  .pipe(webp({ quality: 100 }))
+  .pipe(gulp.dest(dest.images))
+  .pipe(browserSync.stream()));
 
-gulp.task('nunjucks', () => {
-  gulp.src(src.templates)
-    .pipe(data(() => {
-      const njkData = require('./src/templates/data/data.json');
-      return { njkData };
-    }))
-    .pipe(nunjucksRender({
-      path: ['src/templates/'],
-    }))
-    .pipe(gulp.dest(dest.html))
-    .pipe(browserSync.stream());
-});
+gulp.task('nunjucks', () => gulp.src(src.templates)
+  .pipe(data(() => {
+    const njkData = require('./src/templates/data/data.json');
+    return { njkData };
+  }))
+  .pipe(nunjucksRender({
+    path: ['src/templates/'],
+  }))
+  .pipe(gulp.dest(dest.html))
+  .pipe(browserSync.stream()));
 
 gulp.task('watch', () => {
   gulp.watch(src.js, gulp.series('js'));

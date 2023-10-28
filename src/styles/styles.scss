@@ -327,7 +327,7 @@ button {
 
 			color: #1F3F68;
 
-			font-family: Gallient;
+			font-family: Gallien;
 			font-size: 4rem;
 		}
 
@@ -544,6 +544,10 @@ button {
 		justify-content: center;
 
 		transition:top .3s;
+
+		.popup-form {
+			display:block;
+		}
 	}
 }
 
@@ -593,6 +597,8 @@ button {
 
 .popup-form {
 	position: relative;
+
+	display:none;
 
 	width: 33.75rem;
 	padding: 3.5rem;
