@@ -33,6 +33,9 @@ class Popup {
     if (validator.validateForm(this.popupForm)) {
       // Если форма валидна, меняем содержимое формы
       this.popupForm.innerHTML = '<p class="form__success">Your message successfully sent</p>';
+      setTimeout(() => {
+        this.closePopup();
+      }, 3000);
     }
   }
 }

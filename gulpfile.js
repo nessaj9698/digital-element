@@ -10,6 +10,7 @@ const browserSync = require('browser-sync').create();
 const data = require('gulp-data');
 const babel = require('gulp-babel');
 const webpack = require('webpack-stream');
+const replace = require('gulp-replace-path');
 
 const src = {
   js: 'src/js/**/*.js',
@@ -27,7 +28,7 @@ const dest = {
   html: 'dist',
 };
 
-gulp.task('js', () => gulp.src(src.js)
+gulp.task('js', () => gulp.src([src.js, '/src/js/modules/*.js'])
   .pipe(babel())
   .pipe(webpack())
   .pipe(concat('app.min.js'))
@@ -35,7 +36,7 @@ gulp.task('js', () => gulp.src(src.js)
   .pipe(gulp.dest(dest.js))
   .pipe(browserSync.stream()));
 
-gulp.task('css', () => gulp.src(src.css)
+gulp.task('css', () => gulp.src([src.css, 'src/templates/**/*.module.scss'])
   .pipe(autoprefixer({ overrideBrowserslist: ['last 10 version'] }))
   .pipe(scss({ outputStyle: 'compressed' }).on('error', scss.logError))
   .pipe(concat('styles.min.css'))
